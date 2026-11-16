@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>גבול ישראל–ירדן בערבה</title>
+<link rel="stylesheet" href="lib/leaflet/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="t1">גבול ישראל–ירדן בערבה</div>
+    <div class="t2">צפייה בשכבות, במפות ובקבצים של הפרויקט – ללא צורך ב-QGIS</div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button data-tab="map" class="on">מפה</button>
+    <button data-tab="docs">דוחות ואיורים</button>
+    <button data-tab="files">קבצים ותיקיות</button>
+    <button data-tab="about">אודות</button>
+  </nav>
+</header>
+
+<main>
+  <!-- MAP -->
+  <section id="tab-map" class="tab on">
+    <aside class="side" id="side">
+      <div class="side-head">
+        <input id="lsearch" type="search" placeholder="חיפוש שכבה…">
+        <div class="side-tools">
+          <button id="btnAllOff" title="כיבוי כל השכבות">כבה הכול</button>
+          <button id="btnDefault" title="חזרה לשכבות שמוצגות בפרויקט">ברירת מחדל</button>
+          <select id="basemap" title="מפת רקע">
+            <option value="osm">רקע: OpenStreetMap</option>
+            <option value="sat">רקע: תצלום אוויר (Esri)</option>
+            <option value="topo">רקע: טופוגרפי (OpenTopoMap)</option>
+            <option value="light">רקע: בהיר (Carto)</option>
+            <option value="none">ללא רקע</option>
+          </select>
+        </div>
+      </div>
+      <div id="tree" class="tree"></div>
+    </aside>
+    <button id="sideToggle" class="side-toggle" title="הצג/הסתר שכבות">☰ שכבות</button>
+    <div id="map"></div>
+    <div id="coords" class="coords"></div>
+    <div id="loading" class="loading" hidden>טוען שכבה…</div>
+  </section>
+
+  <!-- DOCS -->
+  <section id="tab-docs" class="tab">
+    <div class="page">
+      <h2>דוחות</h2>
+      <div id="docList" class="cards"></div>
+      <h2>איורים ותרשימים</h2>
+      <div id="gallery" class="gallery"></div>
+    </div>
+  </section>
+
+  <!-- FILES -->
+  <section id="tab-files" class="tab">
+    <div class="fbrowser">
+      <aside class="ftree" id="ftree"></aside>
+      <div class="fmain">
+        <div class="fbar">
+          <div id="crumbs" class="crumbs"></div>
+          <input id="fsearch" type="search" placeholder="חיפוש קובץ בכל התיקיות…">
+          <label class="chk"><input type="checkbox" id="showAux"> הצג קבצי עזר</label>
+        </div>
+        <table class="flist"><thead><tr><th>שם</th><th>גודל</th><th>עודכן</th><th>פעולות</th></tr></thead><tbody id="flist"></tbody></table>
+        <div class="fnote" id="fnote"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="tab-about" class="tab">
+    <div class="page prose">
+      <h2>על האתר</h2>
+      <p>האתר מציג את תוכן תיקיית הפרויקט <b>Israel-Jordan-Arava</b> ואת פרויקט ה-QGIS הראשי (<code>Israel_Jordan_Arava_MASTER.qgz</code>) למי שאין לו QGIS.</p>
+      <ul>
+        <li><b>מפה</b> – כל השכבות של פרויקט ה-MASTER, באותן קבוצות, שמות וצבעים. השכבות שמסומנות כאן כברירת מחדל הן אלה שמוצגות בפרויקט. לחיצה על ישות במפה מציגה את המאפיינים שלה.</li>
+        <li><b>דוחות ואיורים</b> – הדוחות (PDF) והאיורים שהופקו במהלך העבודה.</li>
+        <li><b>קבצים ותיקיות</b> – עץ התיקיות המלא (ללא הארכיון). קבצי PDF, תמונות, טקסט וטבלאות נפתחים לצפייה; שכבות GIS נפתחות במפה וניתנות להורדה כ-GeoJSON.</li>
+      </ul>
+      <h3>הערות על הדיוק</h3>
+      <ul>
+        <li>הרסטרים (DEM, עקמומיות, מפות היסטוריות וגאולוגיות) מוצגים בגרסה מוקטנת שמתאימה לרשת. רזולוציית כל שכבה מופיעה ליד שמה. הקבצים המקוריים נמצאים בתיקיית הפרויקט.</li>
+        <li>שכבות וקטוריות גדולות מאוד (אגנים, נחלים, גאולוגיה) הוחלקו מעט (עד כ-10 מ') כדי שייטענו מהר. השכבות של ניתוח העמק והגבולות לא שונו.</li>
+        <li>הנתונים הומרו ל-WGS84 (EPSG:4326). בתחתית המפה מוצגות הקואורדינטות גם ברשת ישראל החדשה (ITM).</li>
+      </ul>
+      <p class="muted" id="buildInfo"></p>
+    </div>
+  </section>
+</main>
+
+<div id="viewer" class="viewer" hidden>
+  <div class="vbox">
+    <div class="vhead"><span id="vtitle"></span><span class="vact"><a id="vdl" download>הורדה</a><a id="vnew" target="_blank" rel="noopener">פתיחה בחלון חדש</a><button id="vclose">✕</button></span></div>
+    <div class="vbody" id="vbody"></div>
+  </div>
+</div>
+
+<script src="lib/leaflet/leaflet.js"></script>
+<script src="lib/proj4.js"></script>
+<script src="data/config.js"></script>
+<script src="data/files.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
