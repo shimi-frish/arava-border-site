@@ -3,6 +3,10 @@
 'use strict';
 var CFG = window.__CFG || {tree:[],raster:{},vector:{}};
 var FILES = window.__FILES || {name:'root',dirs:[],files:[]};
+var META = window.__META || {layers:{},folders:{},images:{}};
+function nk(s){return String(s==null?'':s).replace(/'/g,'\u05F3').replace(/"/g,'\u05F4').trim();}
+var MF=[['what','מה זה'],['shows','מה רואים ואיך לקרוא'],['source','מקור'],['method','איך הוכן'],['notes','דיוק והערות'],['date','תאריך']];
+function hl(s){ return esc(s).replace(/[≥≤~+\u2212]?\d[\d.,:\/°×]*°?/g,function(t){ return /[°\/:×]/.test(t)?'<bdi dir="ltr">'+t+'</bdi>':t; }).replace(/(לא מתועד[^.;]*|להשלמה)/g,'<span class="todo">$1</span>'); }
 var $ = function(s,el){return (el||document).querySelector(s);};
 var $$ = function(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));};
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -16,7 +20,7 @@ function showTab(name){
   $$('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.tab===name);});
   $$('.tab').forEach(function(t){t.classList.toggle('on',t.id==='tab-'+name);});
   if(name==='map' && map) setTimeout(function(){map.invalidateSize();},50);
-  if(!tabInit[name]){tabInit[name]=1; if(name==='docs')initDocs(); if(name==='files')initFiles();}
+  if(!tabInit[name]){tabInit[name]=1; if(name==='docs')initDocs(); if(name==='files')initFiles(); if(name==='catalog')initCatalog();}
   try{history.replaceState(null,'','#'+name);}catch(e){}
 }
 $$('.tabs button').forEach(function(b){b.onclick=function(){showTab(b.dataset.tab);};});
@@ -162,6 +166,34 @@ function layerInfo(l){
   if(l.type==='vector'){ var v=CFG.vector[l.id]; if(!v) return ''; if(v.error) return 'לא הומר'; return v.n+' ישויות'+(v.tol?' · הוחלק':''); }
   return '';
 }
+function metaOf(l){ return META.layers[nk(l.name)]||null; }
+function grpPath(l){ var a=[],p=l.parent; while(p){a.unshift(p.g);p=p.parent;} return a.join(' › '); }
+function kindText(l){
+  if(l.type==='raster') return 'רסטר (תמונה/גריד)';
+  if(l.type==='xyz') return 'מפת רקע (אריחים)';
+  var g={Point:'נקודות',Line:'קווים',Polygon:'פוליגונים'}[l.geom]||''; return 'וקטור'+(g?' – '+g:'');
+}
+function techHtml(l){
+  var t='<div>סוג: '+esc(kindText(l))+(layerInfo(l)?' · '+esc(layerInfo(l)):'')+'</div>';
+  t+='<div>קבוצה במפה: '+esc(grpPath(l))+'</div>';
+  if(l.type!=='xyz') t+='<div>קובץ בתיקיית הפרויקט: <bdi class="fp">'+esc(l.src||'')+(l.lyr?' › '+esc(l.lyr):'')+'</bdi></div>';
+  if(l.type==='vector'&&CFG.vector[l.id]&&CFG.vector[l.id].tol) t+='<div>באתר: גאומטריה מוחלקת מעט לצורך טעינה מהירה. הקובץ המקורי לא שונה.</div>';
+  if(l.type==='raster'&&CFG.raster[l.id]&&CFG.raster[l.id].res_m) t+='<div>באתר: גרסה מוקטנת ברזולוציה של כ-'+esc(CFG.raster[l.id].res_m)+' מ׳ לפיקסל. הקובץ המקורי בתיקיית הפרויקט.</div>';
+  return t;
+}
+function metaHtml(l){
+  var m=metaOf(l)||{}, h='<dl class="mdl">';
+  MF.forEach(function(f){ if(m[f[0]]) h+='<dt>'+f[1]+'</dt><dd>'+hl(m[f[0]])+'</dd>'; });
+  if(!metaOf(l)) h+='<dt>תיאור</dt><dd><span class="todo">אין עדיין תיאור לשכבה זו.</span></dd>';
+  h+='<dt>פרטים טכניים</dt><dd class="tech">'+techHtml(l)+'</dd></dl>';
+  return h;
+}
+function openInfo(l){
+  $('#vtitle').textContent=l.name; $('#vdl').style.display='none'; $('#vnew').style.display='none';
+  var body=$('#vbody'); body.innerHTML='<div class="md info">'+metaHtml(l)+(l.type==='xyz'?'':'<p><button class="btn sm">הצגה במפה</button></p>')+'</div>';
+  var b=$('.sm',body); if(b) b.onclick=function(){ $('#vclose').onclick(); showOnMap([l.id]); };
+  $('#viewer').hidden=false; $('#viewer').classList.add('narrow');
+}
 function renderTree(){
   var root=$('#tree'); root.innerHTML='';
   function node(it,parentEl){
@@ -180,7 +212,7 @@ function renderTree(){
     var row=document.createElement('div'); row.className='lyr'; row.dataset.id=l.id; row._it=l;
     var isBase=l.isBase;
     var dl=(l.type==='vector'&&CFG.vector[l.id]&&!CFG.vector[l.id].error)?'<a href="data/vector/'+l.id+'.geojson" download="'+esc(l.name.replace(/[\\/:*?"<>|]/g,'_'))+'.geojson" title="הורדה כ-GeoJSON">⤓</a>':'';
-    row.innerHTML='<input type="checkbox"'+(l.on?' checked':'')+'>'+swatch(l)+'<span class="nm">'+esc(l.name)+(isBase?'':' <small>'+esc(layerInfo(l))+'</small>')+'</span><span class="acts">'+(isBase?'':'<button class="z" title="התמקדות בשכבה">⌖</button>')+dl+'<button class="x" title="פרטים, שקיפות ומקרא">⋯</button></span>';
+    row.innerHTML='<input type="checkbox"'+(l.on?' checked':'')+'>'+swatch(l)+'<span class="nm">'+esc(l.name)+(isBase?'':' <small>'+esc(layerInfo(l))+'</small>')+'</span><button class="info-b" title="מידע על השכבה: מה זה, מקור ושיטה">ⓘ</button><span class="acts">'+(isBase?'':'<button class="z" title="התמקדות בשכבה">⌖</button>')+dl+'<button class="x" title="פרטים, שקיפות ומקרא">⋯</button></span>';
     var extra=document.createElement('div'); extra.className='lyr-extra';
     extra.innerHTML=(isBase?'מפת הרקע נבחרת בתפריט "רקע" למעלה.':'שקיפות: <input type="range" min="0" max="100" value="'+Math.round((l.op==null?1:l.op)*100)+'">')+legendHtml(l)+'<div class="path">מקור: '+esc(l.src||'')+(l.lyr?' › '+esc(l.lyr):'')+'</div>';
     var cb=$('input',row);
@@ -188,6 +220,7 @@ function renderTree(){
     $('.nm',row).onclick=function(){ cb.checked=!cb.checked; cb.onchange(); };
     if(!isBase) $('.z',row).onclick=function(){ if(!l.on){cb.checked=true;cb.onchange();} zoomTo(l); };
     $('.x',row).onclick=function(){ row.classList.toggle('exp'); };
+    $('.info-b',row).onclick=function(e){ e.stopPropagation(); openInfo(l); };
     var rng=$('input[type=range]',extra);
     if(rng) rng.oninput=function(){ l.op=rng.value/100; if(l.leaf){ if(l.type==='raster') l.leaf.setOpacity(l.op); else { map.removeLayer(l.leaf); l.leaf=null; refresh(); } } };
     l.el=row; l.cb=cb; parentEl.appendChild(row); parentEl.appendChild(extra);
@@ -219,11 +252,11 @@ function showOnMap(ids){
 
 /* ---------------- viewer ---------------- */
 function openViewer(f,url,kind){
-  $('#vtitle').textContent=f.name; var body=$('#vbody'); body.innerHTML='';
+  $('#vtitle').textContent=f.name; var body=$('#vbody'); body.innerHTML=''; $('#vdl').style.display=''; $('#vnew').style.display=''; $('#viewer').classList.remove('narrow');
   $('#vdl').href=url; $('#vdl').setAttribute('download',f.name); $('#vnew').href=url;
   var ext=(f.name.split('.').pop()||'').toLowerCase();
   if(kind==='pdf'){ body.innerHTML='<iframe src="'+url+'"></iframe>'; }
-  else if(kind==='image'){ body.innerHTML='<img src="'+url+'" alt="">'; }
+  else if(kind==='image'){ var d=imgDesc(f); body.innerHTML=(d?'<div class="imgdesc">'+esc(d)+'</div>':'')+'<img src="'+url+'" alt="">'; }
   else if(kind==='text'){
     body.innerHTML='<pre>טוען…</pre>';
     fetch(url).then(function(r){return r.text();}).then(function(t){
@@ -253,6 +286,7 @@ function mdToHtml(t){
   if(inT)out+='</table>'; if(inL)out+='</ul>'; return out;
 }
 
+function imgDesc(f){ if(!f||f.dir==null) return ''; return META.images[(f.dir?f.dir+'/':'')+f.name]||''; }
 /* ---------------- files ---------------- */
 var ALLF=[];
 (function walk(n,path){ n.path=path; n.files.forEach(function(f){ f.dir=path; ALLF.push(f); }); n.dirs.forEach(function(d){ d.parentNode=n; walk(d,path?path+'/'+d.name:d.name); }); })(FILES,'');
@@ -264,7 +298,7 @@ function fileActions(f){
   if(f.view && f.view!=='download') a+='<button class="btn v">צפייה</button>';
   if(f.url) a+='<a class="btn" href="'+enc(f.url)+'" download>הורדה</a>';
   if(f.layers){
-    a+='<button class="btn m">הצגה במפה</button>';
+    a+='<button class="btn m">הצגה במפה</button><button class="btn i" title="מידע על השכבה">ⓘ מידע</button>';
     f.layers.forEach(function(id){ var l=LAYERS[id]; if(l&&l.type==='raster'&&CFG.raster[id]&&CFG.raster[id].file&&!f._pv){ f._pv=id; a+='<button class="btn p">תצוגה מקדימה</button>'; } });
     var vec=f.layers.filter(function(id){return LAYERS[id]&&LAYERS[id].type==='vector'&&CFG.vector[id]&&!CFG.vector[id].error;});
     if(vec.length===1) a+='<a class="btn" href="data/vector/'+vec[0]+'.geojson" download="'+esc(f.name)+'.geojson">GeoJSON</a>';
@@ -275,7 +309,7 @@ var curDir=FILES, fq='';
 function renderFTree(){
   var el=$('#ftree'); el.innerHTML='';
   function add(n,parent,depth){
-    var d=document.createElement('div'); d.className='fd'+(n===curDir?' sel':''); d.textContent=(depth? '📁 ':'🏠 ')+(depth?n.name:'תיקיית הפרויקט');
+    var d=document.createElement('div'); d.className='fd'+(n===curDir?' sel':''); d.innerHTML=(depth? '📁 ':'🏠 ')+'<bdi>'+esc(depth?n.name:'תיקיית הפרויקט')+'</bdi>';
     d.onclick=function(){ curDir=n; fq=''; $('#fsearch').value=''; renderFiles(); };
     parent.appendChild(d);
     if(n.dirs.length && (depth<1 || isAnc(n,curDir))){ var s=document.createElement('div'); s.className='sub'; parent.appendChild(s); n.dirs.forEach(function(c){ add(c,s,depth+1); }); }
@@ -288,14 +322,15 @@ function dirCount(n){ var c=n.files.filter(function(f){return !f.aux;}).length; 
 function renderFiles(){
   renderFTree();
   var aux=$('#showAux').checked, tb=$('#flist'); tb.innerHTML='';
+  var fd=META.folders[curDir.path]; $('#fdesc').innerHTML=(!fq&&fd)?'<b>על התיקייה:</b> '+esc(fd):''; $('#fdesc').hidden=!(!fq&&fd);
   var cr=$('#crumbs'); cr.innerHTML='';
   var chain=[]; var x=curDir; while(x){chain.unshift(x); x=x.parentNode;}
-  chain.forEach(function(n,i){ var s=document.createElement('span'); s.textContent=i?n.name:'תיקיית הפרויקט'; s.onclick=function(){curDir=n;fq='';$('#fsearch').value='';renderFiles();}; cr.appendChild(s); if(i<chain.length-1) cr.appendChild(document.createTextNode(' › ')); });
+  chain.forEach(function(n,i){ var s=document.createElement('span'); s.innerHTML='<bdi>'+esc(i?n.name:'תיקיית הפרויקט')+'</bdi>'; s.onclick=function(){curDir=n;fq='';$('#fsearch').value='';renderFiles();}; cr.appendChild(s); if(i<chain.length-1) cr.appendChild(document.createTextNode(' › ')); });
   var list;
   if(fq){ cr.innerHTML='תוצאות חיפוש: "'+esc(fq)+'"'; list=ALLF.filter(function(f){ return (aux||!f.aux) && (f.name.toLowerCase().indexOf(fq)>=0 || f.dir.toLowerCase().indexOf(fq)>=0); }).slice(0,500); }
   else {
     curDir.dirs.forEach(function(d){
-      var tr=document.createElement('tr'); tr.innerHTML='<td class="nm dir"><span class="ico">📁</span>'+esc(d.name)+'</td><td class="sz">'+fmtSize(dirSize(d))+'</td><td class="dt">'+dirCount(d)+' קבצים</td><td></td>';
+      var tr=document.createElement('tr'); var dd=META.folders[d.path]; tr.innerHTML='<td class="nm dir"><span class="ico">📁</span>'+esc(d.name)+(dd?'<div class="path ddesc">'+esc(dd)+'</div>':'')+'</td><td class="sz">'+fmtSize(dirSize(d))+'</td><td class="dt">'+dirCount(d)+' קבצים</td><td></td>';
       tr.onclick=function(){curDir=d;renderFiles();}; tb.appendChild(tr);
     });
     list=curDir.files.filter(function(f){return aux||!f.aux;});
@@ -305,6 +340,7 @@ function renderFiles(){
     tr.innerHTML='<td class="nm"><span class="ico">'+icon(f)+'</span>'+esc(f.name)+(fq?'<div class="path">'+esc(f.dir||'/')+'</div>':'')+'</td><td class="sz">'+fmtSize(f.size)+'</td><td class="dt">'+fmtDate(f.mtime)+'</td><td class="acts2">'+fileActions(f)+'</td>';
     var v=$('.v',tr); if(v) v.onclick=function(){ openViewer(f,enc(f.url),f.view); };
     var m=$('.m',tr); if(m) m.onclick=function(){ showOnMap(f.layers); };
+    var ib=$('.i',tr); if(ib) ib.onclick=function(){ var L0=LAYERS[f.layers[0]]; if(L0) openInfo(L0); };
     var p=$('.p',tr); if(p) p.onclick=function(){ openViewer(f,'data/raster/'+CFG.raster[f._pv].file,'image'); };
     tb.appendChild(tr);
   });
@@ -339,13 +375,39 @@ function initDocs(){
   var gal=$('#gallery'); gal.innerHTML='';
   Object.keys(groups).sort(function(a,b){ var A=a.indexOf('06_')===0, B=b.indexOf('06_')===0; if(A!==B) return A?-1:1; return a<b?-1:1; }).forEach(function(g){
     var h=document.createElement('h3'); h.textContent=g+' ('+groups[g].length+')'; h.style.gridColumn='1/-1'; h.style.margin='14px 0 0'; gal.appendChild(h);
-    groups[g].forEach(function(f){ var fig=document.createElement('figure'); fig.innerHTML='<img loading="lazy" src="'+enc(f.url)+'" alt=""><figcaption>'+esc(f.name)+'<small>'+esc(f.dir)+'</small></figcaption>'; fig.onclick=function(){ openViewer(f,enc(f.url),'image'); }; gal.appendChild(fig); });
+    groups[g].forEach(function(f){ var fig=document.createElement('figure'); var d=imgDesc(f); fig.innerHTML='<img loading="lazy" src="'+enc(f.url)+'" alt=""><figcaption>'+esc(f.name)+(d?'<span class="cap">'+esc(d)+'</span>':'')+'<small>'+esc(f.dir)+'</small></figcaption>'; fig.onclick=function(){ openViewer(f,enc(f.url),'image'); }; gal.appendChild(fig); });
   });
+}
+
+/* ---------------- catalog ---------------- */
+function initCatalog(){
+  var el=$('#catList'); el.innerHTML='';
+  var n=0, todo=0;
+  function grp(g,depth,parent){
+    var sec=document.createElement('section'); sec.className='cgrp d'+depth;
+    sec.innerHTML='<h'+(depth+2)+'>'+esc(g.g)+'</h'+(depth+2)+'>'; parent.appendChild(sec);
+    g.c.forEach(function(it){
+      if(it.isGroup) return grp(it,depth+1,sec);
+      var l=it, m=metaOf(l); n++; if(!m||/להשלמה|לא מתועד/.test(m.source||'')) todo++;
+      var c=document.createElement('article'); c.className='ccard'; c.dataset.q=(l.name+' '+JSON.stringify(m||{})+' '+(l.src||'')).toLowerCase();
+      c.innerHTML='<div class="chead"><span class="ctitle">'+swatch(l)+esc(l.name)+'</span>'+(l.type==='xyz'?'':'<button class="btn sm">הצגה במפה</button>')+'</div>'+metaHtml(l);
+      var b=$('.sm',c); if(b) b.onclick=function(){ showOnMap([l.id]); };
+      sec.appendChild(c);
+    });
+  }
+  CFG.tree.forEach(function(g){ if(g.isGroup) grp(g,0,el); });
+  var fs=document.createElement('section'); fs.className='cgrp d0 folders'; fs.innerHTML='<h2>תיקיות הפרויקט</h2>';
+  var t='<table class="ftab"><tbody>'; Object.keys(META.folders).sort().forEach(function(p){ t+='<tr><td><bdi>'+esc(p||'(תיקייה ראשית)')+'</bdi></td><td>'+esc(META.folders[p])+'</td></tr>'; }); fs.innerHTML+=t+'</tbody></table>'; el.appendChild(fs);
+  $('#catCount').textContent=n+' שכבות. ב-'+todo+' מהן המקור עדיין מסומן "להשלמה".';
+  $('#csearch').oninput=function(){ var q=this.value.trim().toLowerCase();
+    $$('.ccard',el).forEach(function(c){ c.classList.toggle('hidden', !!q && c.dataset.q.indexOf(q)<0); });
+    $$('.cgrp',el).forEach(function(s){ if(s.classList.contains('folders')) return; s.classList.toggle('hidden', !!q && !s.querySelector('.ccard:not(.hidden)')); }); };
+  $('#cprint').onclick=function(){ window.print(); };
 }
 
 /* about info */
 (function(){ var nV=ORDER.filter(function(l){return l.type==='vector';}).length, nR=ORDER.filter(function(l){return l.type==='raster';}).length;
   $('#buildInfo').textContent='בנוי מתוך Israel_Jordan_Arava_MASTER.qgz: '+nV+' שכבות וקטוריות, '+nR+' שכבות רסטר, '+ALLF.length+' קבצים בעץ התיקיות. עודכן: '+(CFG.built||'')+'.'; })();
 
-var h=(location.hash||'').replace('#',''); showTab(['map','docs','files','about'].indexOf(h)>=0?h:'map');
+var h=(location.hash||'').replace('#',''); showTab(['map','docs','files','catalog','about'].indexOf(h)>=0?h:'map');
 })();

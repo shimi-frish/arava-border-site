@@ -19,6 +19,7 @@
     <button data-tab="map" class="on">מפה</button>
     <button data-tab="docs">דוחות ואיורים</button>
     <button data-tab="files">קבצים ותיקיות</button>
+    <button data-tab="catalog">קטלוג ומידע</button>
     <button data-tab="about">אודות</button>
   </nav>
 </header>
@@ -69,9 +70,20 @@
           <input id="fsearch" type="search" placeholder="חיפוש קובץ בכל התיקיות…">
           <label class="chk"><input type="checkbox" id="showAux"> הצג קבצי עזר</label>
         </div>
+        <div id="fdesc" class="fdesc" hidden></div>
         <table class="flist"><thead><tr><th>שם</th><th>גודל</th><th>עודכן</th><th>פעולות</th></tr></thead><tbody id="flist"></tbody></table>
         <div class="fnote" id="fnote"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="tab-catalog" class="tab">
+    <div class="page">
+      <h2>קטלוג השכבות והמידע עליהן</h2>
+      <p class="prose">לכל שכבה במפה מופיע כאן מה היא, מה רואים בה, מה המקור שלה, איך היא הוכנה ומה הדיוק שלה. את אותו מידע אפשר לפתוח גם מהמפה, בלחיצה על <b>ⓘ</b> ליד שם השכבה. שדות שמסומנים <span class="todo">להשלמה</span> הם מידע שעדיין לא תועד בפרויקט.</p>
+      <div class="catbar"><input id="csearch" type="search" placeholder="חיפוש בקטלוג (שם, מקור, שיטה…)"><button id="cprint" class="btn">הדפסה / שמירה כ-PDF</button><span id="catCount" class="muted"></span></div>
+      <div id="catList"></div>
     </div>
   </section>
 
@@ -84,6 +96,7 @@
       <ul>
         <li><b>מפה</b> – כל השכבות של פרויקט ה-MASTER, באותן קבוצות, שמות וצבעים. השכבות שמסומנות כאן כברירת מחדל הן אלה שמוצגות בפרויקט. לחיצה על ישות במפה מציגה את המאפיינים שלה.</li>
         <li><b>דוחות ואיורים</b> – הדוחות (PDF) והאיורים שהופקו במהלך העבודה.</li>
+        <li><b>קטלוג ומידע</b> – לכל שכבה: מה זה, מה רואים בה, המקור, שיטת ההכנה והדיוק. אפשר להדפיס או לשמור כ-PDF.</li>
         <li><b>קבצים ותיקיות</b> – עץ התיקיות המלא (ללא הארכיון). קבצי PDF, תמונות, טקסט וטבלאות נפתחים לצפייה; שכבות GIS נפתחות במפה וניתנות להורדה כ-GeoJSON.</li>
       </ul>
       <h3>הערות על הדיוק</h3>
@@ -108,6 +121,7 @@
 <script src="lib/proj4.js"></script>
 <script src="data/config.js"></script>
 <script src="data/files.js"></script>
+<script src="data/meta.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
