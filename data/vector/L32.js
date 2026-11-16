@@ -1,0 +1,1 @@
+__V("L32",{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[35.397508,30.945807]},"properties":{"Id":0}}]});
