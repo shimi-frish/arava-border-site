@@ -206,8 +206,10 @@ $('#lsearch').oninput=function(){
   ORDER.forEach(function(l){ var hit=!q || l.name.toLowerCase().indexOf(q)>=0 || (l.src||'').toLowerCase().indexOf(q)>=0; l.el.classList.toggle('hidden',!hit); l.el.nextSibling.classList.toggle('hidden',!hit); });
   GROUPS.slice().reverse().forEach(function(g){ var any=$$('.lyr:not(.hidden)',g.el).length>0; g.el.classList.toggle('hidden',!any); if(q&&any) g.el.classList.remove('closed'); });
 };
-$('#sideToggle').onclick=function(){ $('#side').classList.toggle('hide'); setTimeout(function(){map.invalidateSize();},50); };
+function sideLabel(){ $('#sideToggle').textContent=$('#side').classList.contains('hide')?'☰ שכבות':'✕ סגירת שכבות'; }
+$('#sideToggle').onclick=function(){ $('#side').classList.toggle('hide'); sideLabel(); setTimeout(function(){map.invalidateSize();},50); };
 if(window.innerWidth<800) $('#side').classList.add('hide');
+sideLabel();
 
 function showOnMap(ids){
   showTab('map');

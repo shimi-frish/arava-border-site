@@ -127,8 +127,12 @@ mark{background:#ffe58f;padding:0}
 .vbody table.csv td,.vbody table.csv th{border:1px solid #ddd;padding:2px 6px;white-space:nowrap}
 .vbody table.csv th{background:#f5f5f5;position:sticky;top:0}
 @media (max-width:800px){
-  .side{position:absolute;right:0;top:0;bottom:0;box-shadow:-2px 0 8px rgba(0,0,0,.2)}
-  .side-toggle{display:block}
+  .side{position:absolute;right:0;top:52px;bottom:0;box-shadow:-2px 0 8px rgba(0,0,0,.2);z-index:1100;border-top:1px solid var(--line)}
+  .side-toggle{display:block;left:auto;right:10px;z-index:1200;font-size:14px;padding:8px 12px}
+  .top{padding:6px 10px;gap:6px}
+  .brand .t1{font-size:16px}
+  .tabs button{padding:5px 9px}
+  .coords{display:none}
   .ftree{display:none}
   .flist td.dt,.flist th:nth-child(3){display:none}
   .brand .t2{display:none}
