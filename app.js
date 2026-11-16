@@ -322,6 +322,7 @@ function initDocs(){
   var by={}; docs.forEach(function(f){ var k=f.dir+'/'+f.name.replace(/\.(pdf|docx)$/i,''); (by[k]=by[k]||[]).push(f); });
   var keys=Object.keys(by).sort(function(a,b){ var A=/before_David/.test(a), B=/before_David/.test(b); if(A!==B) return A?1:-1; var ma=Math.max.apply(null,by[a].map(function(f){return f.mtime||0;})), mb=Math.max.apply(null,by[b].map(function(f){return f.mtime||0;})); return mb-ma; });
   var el=$('#docList'); el.innerHTML='';
+  if(!docs.length) el.innerHTML='<p class="muted">הדוחות אינם מפורסמים באתר כרגע.</p>';
   keys.forEach(function(k){
     var fs=by[k], pdf=fs.filter(function(f){return f.view==='pdf';})[0], doc=fs.filter(function(f){return /\.docx$/i.test(f.name);})[0], f0=pdf||doc;
     var old=/before_David/.test(k);
