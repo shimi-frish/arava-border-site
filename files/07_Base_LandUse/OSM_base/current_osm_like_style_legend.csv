@@ -1,0 +1,50 @@
+geometry_group,style_class,hebrew_label,color_or_fill,width_or_note
+polygons,building,מבנה,#d9d0c9,fill opacity 255/255
+polygons,building_public_commercial,מבנה ציבורי / מסחרי,#ead1dc,fill opacity 255/255
+polygons,building_industrial,מבנה תעשייתי,#d6d6d6,fill opacity 255/255
+polygons,building_unfinished,מבנה בבנייה / הרוס,#cccccc,fill opacity 210/255
+polygons,built_residential,שטח מגורים,#e8e0d8,fill opacity 220/255
+polygons,built_commercial,שטח מסחרי,#f2d5d7,fill opacity 225/255
+polygons,built_industrial,שטח תעשייה,#dfd6e6,fill opacity 225/255
+polygons,built_construction,שטח בנוי / בבנייה,#d5d5d5,fill opacity 210/255
+polygons,agriculture,שטח חקלאי,#eef1c2,fill opacity 230/255
+polygons,agriculture_orchard,מטע,#cdebb0,fill opacity 230/255
+polygons,agriculture_greenhouse,חממות,#d6f1df,fill opacity 230/255
+polygons,agriculture_vineyard,כרם,#d5e8b0,fill opacity 230/255
+polygons,natural_forest,יער,#add19e,fill opacity 230/255
+polygons,natural_grass,עשבייה / אחו,#cdebb0,fill opacity 220/255
+polygons,natural_green,כיסוי טבעי ירוק,#b8dba5,fill opacity 220/255
+polygons,water,מים / לחות,#aad3df,fill opacity 235/255
+polygons,natural_bare,קרקע חשופה / חול,#f4e6b5,fill opacity 225/255
+polygons,landuse_other,שימוש קרקע אחר,#eeeeee,fill opacity 180/255
+polygons,landcover,כיסוי קרקע,#d8ead0,fill opacity 220/255
+polygons,military,שטח צבאי,#f0d0d0,fill opacity 220/255
+polygons,cemetery,בית קברות,#aacbaf,fill opacity 220/255
+polygons,amenity,שירות / מוסד,#f2d7d5,fill opacity 230/255
+polygons,leisure,פנאי / שטח פתוח,#c8f0c0,fill opacity 230/255
+polygons,power_plant,תחנת כוח,#f4c2c2,fill opacity 240/255
+polygons,industrial_works,מפעל / מתקן תעשייתי,#d6d6d6,fill opacity 240/255
+polygons,other,אחר,#f5f5f5,fill opacity 150/255
+lines,road_trunk,כביש מהיר / ראשי,#f4a261,width 1.15 mm; solid
+lines,road_primary,כביש ראשי,#f6c267,width 1.05 mm; solid
+lines,road_secondary,כביש משני,#f8df7a,width 0.9 mm; solid
+lines,road_tertiary,כביש שלישי,#fff2a8,width 0.75 mm; solid
+lines,road_local,רחוב / דרך מקומית,#ffffff,width 0.55 mm; solid
+lines,road_service,דרך שירות,#f7f7f7,width 0.4 mm; solid
+lines,road_track,דרך עפר / חקלאית,#b59d7a,width 0.35 mm; dash
+lines,road_path,שביל / הולכי רגל,#c98989,width 0.28 mm; dash
+lines,road_construction,כביש בבנייה,#aaaaaa,width 0.5 mm; dash
+lines,road_other,דרך אחרת,#bdbdbd,width 0.4 mm; solid
+lines,railway,מסילת רכבת,#555555,width 0.55 mm; dash
+lines,waterway,נחל / תעלת מים,#6fa6bf,width 0.45 mm; solid
+lines,other,אחר,#999999,width 0.3 mm; solid
+points,place_major,יישוב מרכזי,#4a4a4a,size 3.8 mm; circle
+points,place_settlement,יישוב,#6b6b6b,size 3.0 mm; circle
+points,place_neighbourhood,שכונה,#8a8a8a,size 2.3 mm; circle
+points,place_locality,מקום / אתר,#9c9c9c,size 2.0 mm; circle
+points,power_plant,תחנת כוח,#d84b4b,size 3.4 mm; square
+points,power_generator,מתקן ייצור חשמל,#e68a2e,size 3.0 mm; triangle
+points,industrial_works,מפעל / מתקן תעשייתי,#7f7f7f,size 3.0 mm; square
+points,amenity,שירות / מוסד,#d97979,size 2.6 mm; circle
+points,man_made_other,מתקן בנוי,#9a9a9a,size 2.6 mm; diamond
+points,other,אחר,#999999,size 2.0 mm; circle

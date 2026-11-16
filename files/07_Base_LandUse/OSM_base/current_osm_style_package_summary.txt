@@ -1,0 +1,40 @@
+סיכום חבילת QGIS בסגנון OSM-like
+==========================================
+קובץ מקור: merged_osm_layers_deduplicated(1).geojson
+מספר ישויות כולל: 36,564
+
+חלוקה לפי סוג גאומטריה:
+- polygons: 18,185
+- lines: 18,174
+- points: 205
+
+סיווגי סגנון עיקריים:
+- building: 17,303
+- road_path: 4,711
+- road_local: 4,457
+- road_track: 3,549
+- road_service: 2,803
+- road_tertiary: 1,054
+- road_trunk: 790
+- road_secondary: 449
+- road_primary: 253
+- water: 217
+- agriculture_orchard: 180
+- agriculture: 159
+- place_locality: 137
+- natural_bare: 102
+- road_construction: 78
+- building_public_commercial: 68
+- place_settlement: 65
+- road_other: 50
+- natural_grass: 34
+- natural_forest: 29
+- place_neighbourhood: 19
+- building_industrial: 18
+- agriculture_greenhouse: 15
+- building_unfinished: 14
+- place_major: 6
+- natural_green: 4
+
+שדה הסימבולוגיה: style_class
+סדר שכבות מומלץ ב-QGIS: פוליגונים למטה, קווים מעליהם, נקודות מעל הכול.
