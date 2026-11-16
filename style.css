@@ -9,6 +9,8 @@ button,select,input{font-family:inherit;font-size:13px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 16px;background:#22313f;color:#fff;flex-wrap:wrap}
 .brand .t1{font-size:18px;font-weight:700}
 .brand .t2{font-size:12px;opacity:.75}
+.brand .t3{font-size:12px;opacity:.9;margin-top:1px}
+.credit{background:#fff;border-right:4px solid var(--accent);padding:10px 14px;border-radius:6px}
 .tabs{display:flex;gap:4px;flex-wrap:wrap}
 .tabs button{background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 14px;border-radius:6px;cursor:pointer}
 .tabs button.on{background:#fff;color:#22313f;font-weight:600}
@@ -130,4 +132,5 @@ mark{background:#ffe58f;padding:0}
   .ftree{display:none}
   .flist td.dt,.flist th:nth-child(3){display:none}
   .brand .t2{display:none}
+  .brand .t3{font-size:11px}
 }

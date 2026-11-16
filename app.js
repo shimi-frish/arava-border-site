@@ -332,7 +332,7 @@ function initDocs(){
     if(pdf) $('.v',c).onclick=function(){ openViewer(pdf,enc(pdf.url),'pdf'); };
     el.appendChild(c);
   });
-  var seen={}, imgs=ALLF.filter(function(f){ if(f.view!=='image') return false; var k=f.name+'|'+f.size; if(seen[k]) return false; seen[k]=1; return !/_grid_check|_work/.test(f.dir); });
+  var seen={}, imgs=ALLF.filter(function(f){ if(f.view!=='image') return false; var k=f.name.replace(/['_]/g,'')+'|'+f.size; if(seen[k]) return false; seen[k]=1; return !/_grid_check|_work/.test(f.dir); });
   var groups={}; imgs.forEach(function(f){ var g=f.dir.split('/').slice(0,2).join(' / ')||'ראשי'; (groups[g]=groups[g]||[]).push(f); });
   var gal=$('#gallery'); gal.innerHTML='';
   Object.keys(groups).sort(function(a,b){ var A=a.indexOf('06_')===0, B=b.indexOf('06_')===0; if(A!==B) return A?-1:1; return a<b?-1:1; }).forEach(function(g){
