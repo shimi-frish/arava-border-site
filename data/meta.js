@@ -1,6 +1,22 @@
 /* Metadata for every layer, folder and figure on the site. Hand-written; edit freely (keys = layer names as in MASTER). */
 window.__META={
 "layers": {
+"ירדן 1:250,000 – Bender 1968, גיליון עקבה–מעאן": {
+"what": "מפה גאולוגית סרוקה של ירדן בקנה מידה 1:250,000, גיליון Aqaba–Ma'an (עקבה–מעאן).",
+"shows": "יחידות סלע ותצורות והעתקים. מכסה את דרום ירדן, מעקבה ועד מעאן, כולל הצד הירדני של הערבה.",
+"source": "Geologische Karte von Jordanien / Geological Map of Jordan 1:250,000, Blatt Aqaba–Ma'an (עקבה–מעאן). Bundesanstalt für Bodenforschung, Hannover (המשלחת הגאולוגית הגרמנית בירדן, F. Bender ואחרים), 1968, בשיתוף רשות משאבי הטבע של ירדן (NRA). סריקה: הספרייה הלאומית של אוסטרליה, nla.obj-2518025444. © זכויות היוצרים שמורות לבעליהן (Bundesanstalt für Bodenforschung / ממשלת ירדן). מוצגת לצורכי מחקר בלבד.",
+"method": "עוגנה לפי סימוני רשת פלשתינה (Palestine Grid) בשולי הגיליון: טרנספורמציה אפינית קונפורמית, ואחר כך המרה לרשת ישראל החדשה. הדיוק המשוער הוא 100–300 מ'.",
+"notes": "",
+"date": "2026-11-17"
+},
+"ירדן 1:250,000 – Bender 1968, גיליון עמאן": {
+"what": "מפה גאולוגית סרוקה של ירדן בקנה מידה 1:250,000, גיליון Amman (עמאן).",
+"shows": "יחידות סלע ותצורות והעתקים. מכסה את צפון ירדן ואת ים המלח.",
+"source": "Geologische Karte von Jordanien / Geological Map of Jordan 1:250,000, Blatt Amman (עמאן). Bundesanstalt für Bodenforschung, Hannover (המשלחת הגאולוגית הגרמנית בירדן, F. Bender ואחרים), 1968, בשיתוף רשות משאבי הטבע של ירדן (NRA). סריקה: הספרייה הלאומית של אוסטרליה, nla.obj-2518025384. © זכויות היוצרים שמורות לבעליהן (Bundesanstalt für Bodenforschung / ממשלת ירדן). מוצגת לצורכי מחקר בלבד.",
+"method": "עוגנה לפי סימוני רשת פלשתינה (Palestine Grid) בשולי הגיליון: טרנספורמציה אפינית קונפורמית, ואחר כך המרה לרשת ישראל החדשה. הדיוק המשוער הוא 100–300 מ'.",
+"notes": "",
+"date": "2026-11-17"
+},
 "ירדן 1:500,000 – Bender, USGS PP 560-I לוח 1 (כל ירדן)": {
 "what": "מפה גאולוגית סרוקה של ירדן כולה, בקנה מידה 1:500,000.",
 "shows": "יחידות סלע ותצורות, העתקים ומקרא מלא. זו המפה שממנה נעשתה הדיגיטציה של שכבת Kempf.",
