@@ -1,0 +1,1 @@
+__V("L128",{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"LineString","coordinates":[[34.977889,29.541937],[35.455035,31.1]]},"properties":{"name":"קו ישר אילת – ים המלח","length_km":178.7}}]});
