@@ -1,1 +1,0 @@
-__V("L01",{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"LineString","coordinates":[[34.977889,29.541937],[35.455035,31.1]]},"properties":{"name":"קו ישר בין קצות הגבול (חוף אילת/עקבה – בריכות ים המלח 31.10°)","length_km":178.74368652895578}}]});
