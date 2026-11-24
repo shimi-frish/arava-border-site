@@ -1,0 +1,22 @@
+{
+ "area_km2": 2661.5,
+ "IoU_vs_final": 0.814,
+ "median_width_km": 14.29,
+ "centre_offset_vs_project_centre_median_km": -0.19,
+ "abs_p90_km": 2.16,
+ "sections_with_source": {
+  "Bender1968_E": 678,
+  "USGS_Bender1974_E": 686,
+  "AtlasJordan2013_E": 713,
+  "K737_1960_E": 70,
+  "AMS_K502_1961_E": 705,
+  "Tourist1962_E": 281,
+  "Powell2015_E": 203,
+  "Bender1968_W": 678,
+  "USGS_Bender1974_W": 686,
+  "AtlasJordan2013_W": 713,
+  "K737_1960_W": 70
+ },
+ "sections_nE0": 1,
+ "sections_nW0": 2
+}

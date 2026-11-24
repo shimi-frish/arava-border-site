@@ -1,0 +1,35 @@
+{
+ "alt2_minus_alt3": {
+  "median_km": -0.21,
+  "median_abs_km": 0.76,
+  "within_1km_pct": 59.5,
+  "max_abs_km": 4.32,
+  "east_pct": 41.8
+ },
+ "alt4_minus_alt5": {
+  "median_km": 0.04,
+  "median_abs_km": 0.83,
+  "within_1km_pct": 54.6,
+  "max_abs_km": 5.82,
+  "east_pct": 52.0
+ },
+ "alt4_minus_alt2": {
+  "median_km": -1.72,
+  "median_abs_km": 2.45,
+  "within_1km_pct": 18.7,
+  "max_abs_km": 8.75,
+  "east_pct": 26.9
+ },
+ "km0-60": {
+  "alt2_minus_alt3": -0.66,
+  "alt4_minus_alt5": -0.87
+ },
+ "km60-120": {
+  "alt2_minus_alt3": 0.01,
+  "alt4_minus_alt5": 0.16
+ },
+ "km120-180": {
+  "alt2_minus_alt3": 0.17,
+  "alt4_minus_alt5": 0.05
+ }
+}
