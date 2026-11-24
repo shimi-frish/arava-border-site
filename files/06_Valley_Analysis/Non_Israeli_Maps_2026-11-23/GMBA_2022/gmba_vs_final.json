@@ -1,0 +1,7 @@
+{
+ "gmba_valley_km2": 4701.9,
+ "final_km2": 2729.1,
+ "IoU": 0.527,
+ "final_inside_gmba_pct": 93.9,
+ "gmba_inside_final_pct": 54.5
+}

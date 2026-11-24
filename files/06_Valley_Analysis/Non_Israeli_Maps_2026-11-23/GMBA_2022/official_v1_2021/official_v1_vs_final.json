@@ -1,0 +1,7 @@
+{
+ "official_v1_valley_km2": 5787.6,
+ "IoU_vs_final": 0.459,
+ "final_inside_pct": 98.1,
+ "final_valley_overlapping_official_mountain_km2": 49.3,
+ "v2_mine_vs_official_v1_IoU_mountain_in_box": 0.628
+}

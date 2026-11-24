@@ -1,0 +1,18 @@
+{
+ "E": {
+  "n": 713,
+  "of": 715,
+  "median_km": 0.99,
+  "within_1km_pct": 47.4,
+  "within_2km_pct": 58.8,
+  "outside_pct": 63.7
+ },
+ "W": {
+  "n": 466,
+  "of": 715,
+  "median_km": 3.79,
+  "within_1km_pct": 26.6,
+  "within_2km_pct": 35.2,
+  "outside_pct": 80.5
+ }
+}
