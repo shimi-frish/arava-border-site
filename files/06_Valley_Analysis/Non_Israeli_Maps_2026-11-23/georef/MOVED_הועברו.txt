@@ -1,0 +1,4 @@
+24.11.2026: המפות המעוגנות שהיו בתיקייה זו הועברו לתיקיית המפות ההיסטוריות:
+- מפת עבר הירדן 1941 ומפת התיירות של ירדן 1962: 05_Historical_Maps/B_Topographic_Thematic_Maps/Jordanian/
+- AMS K502 (שלושה גיליונות) ו-K737: 05_Historical_Maps/B_Topographic_Thematic_Maps/American_AMS/
+רשימת ההעברות המלאה: 05_Historical_Maps/_reorg_2026-11-24/moves.tsv
