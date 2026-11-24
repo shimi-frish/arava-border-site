@@ -1,0 +1,31 @@
+{
+ "length_km": 175.0,
+ "share_from_period_sources_pct": 62.8,
+ "by_source_km": {
+  "armistice_line_gap": 64.1,
+  "trail_sheet14_1993": 34.0,
+  "trail_sheet17_1991": 50.0,
+  "yahel_before_treaty": 13.6,
+  "yotvata_before_treaty": 12.3
+ },
+ "dx_vs_armistice_all": {
+  "median_abs_m": 38,
+  "p90_abs_m": 277,
+  "max_abs_m": 405
+ },
+ "dx_vs_armistice_period_sources": {
+  "median_abs_m": 89,
+  "share_over_300m_pct": 12.3,
+  "max_east_m": 405,
+  "max_west_m": -138
+ },
+ "dx_vs_1994_period_sources": {
+  "median_abs_m": 291
+ },
+ "areas_east_of_armistice_km2": 12.83,
+ "areas_west_of_armistice_km2": 0.25,
+ "yahel_map_shift_applied_m": [
+  -350,
+  50
+ ]
+}
