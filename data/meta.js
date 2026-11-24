@@ -1248,6 +1248,7 @@ window.__META={
 "05_Historical_Maps/B_Topographic_Thematic_Maps/Israeli": "מפות ישראליות: ברסלבסקי 1952, מפות מבצע חורב, מפת היישובים 2023, ומפת עזר ללימוד תנ\"ך 1971.",
 "05_Historical_Maps/B_Topographic_Thematic_Maps/Israeli/Topographic_sheets": "גיליונות טופוגרפיים ישראליים: 1:100,000 משנים 1948–1961, ו-1:50,000 משנים 1969 ו-1991–1998, עם הסריקות ונקודות הבקרה.",
 "05_Historical_Maps/B_Topographic_Thematic_Maps/Jordanian": "מפות ירדניות מעוגנות: עבר הירדן 1:250,000, גיליון כרך (1941), ומפת התיירות של ירדן 1:750,000 (1962).",
+"05_Historical_Maps/B_Topographic_Thematic_Maps/Jordanian/Jordan_Tourist_Maps_Rassas_1965": "מפות התיירות של ירדן מאת עבד אל-רחמן רסאס, 1965, באישור רשות התיירות הירדנית: ירושלים 1:10,000, ירדן 1:2,500,000, מפת פרטים 1:750,000. בערבה ערכה נמוך בגלל קנה המידה. ראו README.md.",
 "05_Historical_Maps/B_Topographic_Thematic_Maps/American_AMS": "מפות של שירות המפות של צבא ארה\"ב: K502 1:250,000 (1961), K737 1:50,000 עקבה (1960), ומפת חיל האוויר האמריקאי 1944.",
 "05_Historical_Maps/B_Topographic_Thematic_Maps/European_Ottoman": "מפות אירופיות ועות'מאניות: פישר (לייפציג 1910), מפה עות'מאנית 1897 ואטלס גרמני 1924.",
 "05_Historical_Maps/_reorg_2026-11-24": "רשימת ההעברות מ-24.11.2026 (moves.tsv) וסקריפט להחזרתן (undo_moves.py).",
