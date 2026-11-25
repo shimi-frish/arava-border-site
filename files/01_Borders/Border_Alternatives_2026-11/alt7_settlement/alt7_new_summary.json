@@ -1,0 +1,41 @@
+{
+ "n": 620,
+ "new_minus_arm_median_m": 53,
+ "share_east_gt100m_pct": 37.3,
+ "max_east_m": 1990,
+ "area_east_of_arm_km2": 27.1,
+ "area_west_of_arm_km2": 0.3,
+ "new_vs_1994_median_abs_m": 255,
+ "new_vs_old7_median_abs_m": 1,
+ "old_area_east_of_arm_km2": 12.8,
+ "timeline": {
+  "19850418": {
+   "israeli_fields_green_ha": 392.0,
+   "zofar_green_ha": 0.0
+  },
+  "19870408": {
+   "israeli_fields_green_ha": 486.0,
+   "zofar_green_ha": 54.0
+  },
+  "19900227": {
+   "israeli_fields_green_ha": 536.0,
+   "zofar_green_ha": 51.0
+  },
+  "19930323": {
+   "israeli_fields_green_ha": 534.0,
+   "zofar_green_ha": 40.0
+  },
+  "19940206": {
+   "israeli_fields_green_ha": 496.0,
+   "zofar_green_ha": 64.0
+  },
+  "19960315": {
+   "israeli_fields_green_ha": 516.0,
+   "zofar_green_ha": 41.0
+  },
+  "19980305": {
+   "israeli_fields_green_ha": 495.0,
+   "zofar_green_ha": 20.0
+  }
+ }
+}

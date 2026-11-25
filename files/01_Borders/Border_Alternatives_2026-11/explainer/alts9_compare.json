@@ -1,0 +1,473 @@
+{
+ "names": {
+  "1": "קו המנדט (1942)",
+  "2": "מרכז העמק, מקורות זרים",
+  "3": "מרכז העמק, SRTM",
+  "4": "תלווג היסטורי",
+  "5": "תלווג, SRTM",
+  "6": "גבול השלום 1994",
+  "7": "קו שרון – מצב דה-פקטו בשטח",
+  "7a": "קו רשמי ישראלי טרם ההסכם",
+  "8": "קו שביתת הנשק 1949"
+ },
+ "vs1994": {
+  "1": {
+   "n": 593,
+   "median_abs_m": 542,
+   "mean_abs_m": 1053,
+   "std_abs_m": 1360,
+   "median_m": 127,
+   "max_east_m": 6471,
+   "max_west_m": -2086,
+   "within500_pct": 46.0,
+   "area_east_km2": 121.5,
+   "area_west_km2": 34.6
+  },
+  "2": {
+   "n": 621,
+   "median_abs_m": 1319,
+   "mean_abs_m": 2523,
+   "std_abs_m": 2711,
+   "median_m": 1006,
+   "max_east_m": 9215,
+   "max_west_m": -2920,
+   "within500_pct": 22.9,
+   "area_east_km2": 352.5,
+   "area_west_km2": 39.2
+  },
+  "3": {
+   "n": 621,
+   "median_abs_m": 2395,
+   "mean_abs_m": 3095,
+   "std_abs_m": 2689,
+   "median_m": 1523,
+   "max_east_m": 9559,
+   "max_west_m": -4844,
+   "within500_pct": 15.9,
+   "area_east_km2": 416.4,
+   "area_west_km2": 64.0
+  },
+  "4": {
+   "n": 621,
+   "median_abs_m": 879,
+   "mean_abs_m": 1237,
+   "std_abs_m": 1218,
+   "median_m": -137,
+   "max_east_m": 5903,
+   "max_west_m": -3866,
+   "within500_pct": 38.6,
+   "area_east_km2": 85.2,
+   "area_west_km2": 106.8
+  },
+  "5": {
+   "n": 621,
+   "median_abs_m": 437,
+   "mean_abs_m": 662,
+   "std_abs_m": 732,
+   "median_m": -118,
+   "max_east_m": 4024,
+   "max_west_m": -3430,
+   "within500_pct": 54.4,
+   "area_east_km2": 43.6,
+   "area_west_km2": 59.2
+  },
+  "7": {
+   "n": 621,
+   "median_abs_m": 257,
+   "mean_abs_m": 424,
+   "std_abs_m": 458,
+   "median_m": 9,
+   "max_east_m": 2234,
+   "max_west_m": -1668,
+   "within500_pct": 70.4,
+   "area_east_km2": 44.0,
+   "area_west_km2": 21.9
+  },
+  "7a": {
+   "n": 621,
+   "median_abs_m": 329,
+   "mean_abs_m": 504,
+   "std_abs_m": 496,
+   "median_m": 2,
+   "max_east_m": 2234,
+   "max_west_m": -2368,
+   "within500_pct": 62.3,
+   "area_east_km2": 43.0,
+   "area_west_km2": 35.2
+  },
+  "8": {
+   "n": 620,
+   "median_abs_m": 365,
+   "mean_abs_m": 514,
+   "std_abs_m": 469,
+   "median_m": -83,
+   "max_east_m": 1927,
+   "max_west_m": -2436,
+   "within500_pct": 60.0,
+   "area_east_km2": 37.4,
+   "area_west_km2": 42.2
+  }
+ },
+ "pairs": [
+  {
+   "a": "1",
+   "b": "2",
+   "n": 593,
+   "median": 1343,
+   "mean": 2228,
+   "std": 2444,
+   "p90": 6522,
+   "signed_median": -387
+  },
+  {
+   "a": "1",
+   "b": "3",
+   "n": 593,
+   "median": 1855,
+   "mean": 2759,
+   "std": 2432,
+   "p90": 7493,
+   "signed_median": -861
+  },
+  {
+   "a": "1",
+   "b": "4",
+   "n": 593,
+   "median": 1029,
+   "mean": 1868,
+   "std": 2024,
+   "p90": 5259,
+   "signed_median": 409
+  },
+  {
+   "a": "1",
+   "b": "5",
+   "n": 593,
+   "median": 506,
+   "mean": 1093,
+   "std": 1496,
+   "p90": 3175,
+   "signed_median": 369
+  },
+  {
+   "a": "1",
+   "b": "6",
+   "n": 593,
+   "median": 542,
+   "mean": 1053,
+   "std": 1360,
+   "p90": 2813,
+   "signed_median": 127
+  },
+  {
+   "a": "1",
+   "b": "7",
+   "n": 593,
+   "median": 539,
+   "mean": 1057,
+   "std": 1471,
+   "p90": 2838,
+   "signed_median": 136
+  },
+  {
+   "a": "1",
+   "b": "7a",
+   "n": 593,
+   "median": 504,
+   "mean": 1053,
+   "std": 1507,
+   "p90": 3318,
+   "signed_median": 202
+  },
+  {
+   "a": "1",
+   "b": "8",
+   "n": 593,
+   "median": 574,
+   "mean": 1097,
+   "std": 1502,
+   "p90": 3369,
+   "signed_median": 291
+  },
+  {
+   "a": "2",
+   "b": "3",
+   "n": 621,
+   "median": 809,
+   "mean": 1056,
+   "std": 905,
+   "p90": 2131,
+   "signed_median": -265
+  },
+  {
+   "a": "2",
+   "b": "4",
+   "n": 621,
+   "median": 2598,
+   "mean": 3067,
+   "std": 2402,
+   "p90": 8065,
+   "signed_median": 2148
+  },
+  {
+   "a": "2",
+   "b": "5",
+   "n": 621,
+   "median": 1315,
+   "mean": 2459,
+   "std": 2804,
+   "p90": 8375,
+   "signed_median": 1187
+  },
+  {
+   "a": "2",
+   "b": "6",
+   "n": 621,
+   "median": 1319,
+   "mean": 2523,
+   "std": 2711,
+   "p90": 8175,
+   "signed_median": 1006
+  },
+  {
+   "a": "2",
+   "b": "7",
+   "n": 621,
+   "median": 1497,
+   "mean": 2488,
+   "std": 2723,
+   "p90": 8407,
+   "signed_median": 987
+  },
+  {
+   "a": "2",
+   "b": "7a",
+   "n": 621,
+   "median": 1514,
+   "mean": 2483,
+   "std": 2723,
+   "p90": 8407,
+   "signed_median": 1050
+  },
+  {
+   "a": "2",
+   "b": "8",
+   "n": 620,
+   "median": 1578,
+   "mean": 2541,
+   "std": 2739,
+   "p90": 8430,
+   "signed_median": 1266
+  },
+  {
+   "a": "3",
+   "b": "4",
+   "n": 621,
+   "median": 2930,
+   "mean": 3468,
+   "std": 2392,
+   "p90": 7952,
+   "signed_median": 2587
+  },
+  {
+   "a": "3",
+   "b": "5",
+   "n": 621,
+   "median": 2226,
+   "mean": 3054,
+   "std": 2721,
+   "p90": 8279,
+   "signed_median": 1636
+  },
+  {
+   "a": "3",
+   "b": "6",
+   "n": 621,
+   "median": 2395,
+   "mean": 3095,
+   "std": 2689,
+   "p90": 8065,
+   "signed_median": 1523
+  },
+  {
+   "a": "3",
+   "b": "7",
+   "n": 621,
+   "median": 2326,
+   "mean": 3029,
+   "std": 2717,
+   "p90": 8192,
+   "signed_median": 1420
+  },
+  {
+   "a": "3",
+   "b": "7a",
+   "n": 621,
+   "median": 2216,
+   "mean": 3004,
+   "std": 2724,
+   "p90": 8192,
+   "signed_median": 1528
+  },
+  {
+   "a": "3",
+   "b": "8",
+   "n": 620,
+   "median": 2277,
+   "mean": 3051,
+   "std": 2755,
+   "p90": 8311,
+   "signed_median": 1643
+  },
+  {
+   "a": "4",
+   "b": "5",
+   "n": 621,
+   "median": 814,
+   "mean": 1206,
+   "std": 1270,
+   "p90": 2762,
+   "signed_median": 3
+  },
+  {
+   "a": "4",
+   "b": "6",
+   "n": 621,
+   "median": 879,
+   "mean": 1237,
+   "std": 1218,
+   "p90": 2900,
+   "signed_median": -137
+  },
+  {
+   "a": "4",
+   "b": "7",
+   "n": 621,
+   "median": 759,
+   "mean": 1251,
+   "std": 1306,
+   "p90": 3218,
+   "signed_median": -220
+  },
+  {
+   "a": "4",
+   "b": "7a",
+   "n": 621,
+   "median": 646,
+   "mean": 1191,
+   "std": 1308,
+   "p90": 3082,
+   "signed_median": -104
+  },
+  {
+   "a": "4",
+   "b": "8",
+   "n": 620,
+   "median": 634,
+   "mean": 1185,
+   "std": 1284,
+   "p90": 3089,
+   "signed_median": 12
+  },
+  {
+   "a": "5",
+   "b": "6",
+   "n": 621,
+   "median": 437,
+   "mean": 662,
+   "std": 732,
+   "p90": 1485,
+   "signed_median": -118
+  },
+  {
+   "a": "5",
+   "b": "7",
+   "n": 621,
+   "median": 290,
+   "mean": 498,
+   "std": 568,
+   "p90": 1254,
+   "signed_median": -123
+  },
+  {
+   "a": "5",
+   "b": "7a",
+   "n": 621,
+   "median": 262,
+   "mean": 450,
+   "std": 545,
+   "p90": 1135,
+   "signed_median": -87
+  },
+  {
+   "a": "5",
+   "b": "8",
+   "n": 620,
+   "median": 255,
+   "mean": 450,
+   "std": 555,
+   "p90": 1176,
+   "signed_median": 19
+  },
+  {
+   "a": "6",
+   "b": "7",
+   "n": 621,
+   "median": 257,
+   "mean": 424,
+   "std": 458,
+   "p90": 1126,
+   "signed_median": -9
+  },
+  {
+   "a": "6",
+   "b": "7a",
+   "n": 621,
+   "median": 329,
+   "mean": 504,
+   "std": 496,
+   "p90": 1229,
+   "signed_median": -2
+  },
+  {
+   "a": "6",
+   "b": "8",
+   "n": 620,
+   "median": 365,
+   "mean": 514,
+   "std": 469,
+   "p90": 1133,
+   "signed_median": 83
+  },
+  {
+   "a": "7",
+   "b": "7a",
+   "n": 621,
+   "median": 1,
+   "mean": 93,
+   "std": 299,
+   "p90": 258,
+   "signed_median": 0
+  },
+  {
+   "a": "7",
+   "b": "8",
+   "n": 620,
+   "median": 58,
+   "mean": 177,
+   "std": 327,
+   "p90": 370,
+   "signed_median": 53
+  },
+  {
+   "a": "7a",
+   "b": "8",
+   "n": 620,
+   "median": 42,
+   "mean": 84,
+   "std": 109,
+   "p90": 279,
+   "signed_median": 38
+  }
+ ]
+}
