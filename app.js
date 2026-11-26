@@ -25,7 +25,7 @@ function showTab(name){
   $$('.tab').forEach(function(t){t.classList.toggle('on',t.id==='tab-'+name);});
   if(name==='map' && map) setTimeout(function(){map.invalidateSize();},50);
   if(!tabInit[name]){tabInit[name]=1; if(name==='docs')initDocs(); if(name==='files')initFiles(); if(name==='catalog')initCatalog();}
-  try{history.replaceState(null,'','#'+name);}catch(e){}
+  try{ if(!(name==='map' && /^#alt/.test(location.hash))) history.replaceState(null,'','#'+name);}catch(e){}
 }
 $$('.tabs button').forEach(function(b){b.onclick=function(){showTab(b.dataset.tab);};});
 
@@ -243,6 +243,38 @@ $('#lsearch').oninput=function(){
   ORDER.forEach(function(l){ var hit=!q || l.name.toLowerCase().indexOf(q)>=0 || (l.src||'').toLowerCase().indexOf(q)>=0; l.el.classList.toggle('hidden',!hit); l.el.nextSibling.classList.toggle('hidden',!hit); });
   GROUPS.slice().reverse().forEach(function(g){ var any=$$('.lyr:not(.hidden)',g.el).length>0; g.el.classList.toggle('hidden',!any); if(q&&any) g.el.classList.remove('closed'); });
 };
+/* ---------------- ready-made views per border alternative ---------------- */
+var PRESETS = window.__PRESETS || [];
+var BYNAME={}; ORDER.forEach(function(l){ BYNAME[nk(l.name)]=l; });
+var ARAVA=[[29.45,34.85],[31.6,35.62]];
+function applyPreset(p){
+  // a name starting with '-' is listed in the card but starts switched off
+  var want={}, all=[]; p.layers.forEach(function(n){ var off=n.charAt(0)==='-'; var l=BYNAME[nk(off?n.slice(1):n)]; if(l){ all.push(l); if(!off) want[l.id]=l; } });
+  ORDER.forEach(function(l){ if(l.isBase) return; l.on=!!want[l.id]; l.cb.checked=l.on; });
+  GROUPS.forEach(function(g){ g.on=true; g.cb.checked=true; g.el.classList.add('closed'); });
+  all.forEach(function(l){ var q=l.parent; while(q){ q.el.classList.remove('closed'); q=q.parent; } });
+  refresh(); map.fitBounds(ARAVA);
+  $$('#altbar button').forEach(function(b){ b.classList.toggle('on',b.dataset.k===p.k); });
+  var card=$('#altcard');
+  card.innerHTML='<button class="close" title="סגירה">✕</button><div class="ct">'+(p.k==='all'?'':'חלופה '+esc(p.k)+': ')+esc(p.t)+'</div><div class="cd">'+esc(p.d)+'</div><div class="cl">'+
+    all.map(function(l){ return '<div class="ci" data-id="'+l.id+'"><input type="checkbox" title="הצגה/הסתרה"'+(l.on?' checked':'')+'>'+swatch(l)+'<span class="cn">'+esc(l.name)+'</span><button class="info-b" title="מידע על השכבה">ⓘ</button></div>'; }).join('')+'</div>';
+  card.hidden=false;
+  $('.close',card).onclick=function(){ card.hidden=true; };
+  $$('.ci',card).forEach(function(r){ var l=LAYERS[r.dataset.id], c=$('input',r); $('.info-b',r).onclick=function(){ openInfo(l); }; c.onchange=function(){ l.on=c.checked; l.cb.checked=c.checked; refresh(); }; $('.cn',r).onclick=function(){ c.checked=!c.checked; c.onchange(); }; });
+  $('.cl',card).insertAdjacentHTML('afterend','<div class="muted ch">אפשר לסמן או לבטל כל שכבה ברשימה.</div>');
+  try{ history.replaceState(null,'','#alt'+p.k); }catch(e){}
+}
+(function(){
+  if(!PRESETS.length) return;
+  var bar=document.createElement('div'); bar.id='altbar'; bar.className='altbar';
+  bar.innerHTML='<span class="al">הצגת חלופה:</span>'+PRESETS.map(function(p){ return '<button data-k="'+esc(p.k)+'" title="'+esc(p.t)+'">'+(p.k==='all'?'כל החלופות':esc(p.k))+'</button>'; }).join('');
+  var card=document.createElement('div'); card.id='altcard'; card.className='altcard'; card.hidden=true;
+  var host=$('#tab-map'); host.appendChild(bar); host.appendChild(card);
+  L.DomEvent.disableClickPropagation(bar); L.DomEvent.disableClickPropagation(card); L.DomEvent.disableScrollPropagation(card);
+  $$('button',bar).forEach(function(b){ b.onclick=function(){ var p=PRESETS.filter(function(x){return x.k===b.dataset.k;})[0]; if(p) applyPreset(p); }; });
+  var m=/^#alt(\w+)$/.exec(location.hash||''); var p0=m && PRESETS.filter(function(x){return x.k===m[1];})[0];
+  applyPreset(p0 || PRESETS.filter(function(x){return x.k==='all';})[0] || PRESETS[0]);
+})();
 function sideLabel(){ $('#sideToggle').textContent=$('#side').classList.contains('hide')?'☰ שכבות':'✕ סגירת שכבות'; }
 $('#sideToggle').onclick=function(){ $('#side').classList.toggle('hide'); sideLabel(); setTimeout(function(){map.invalidateSize();},50); };
 if(window.innerWidth<800) $('#side').classList.add('hide');
@@ -414,5 +446,5 @@ function initCatalog(){
 (function(){ var nV=ORDER.filter(function(l){return l.type==='vector';}).length, nR=ORDER.filter(function(l){return l.type==='raster';}).length;
   $('#buildInfo').textContent='בנוי מתוך Israel_Jordan_Arava_MASTER.qgz: '+nV+' שכבות וקטוריות, '+nR+' שכבות רסטר, '+ALLF.length+' קבצים בעץ התיקיות. עודכן: '+(CFG.built||'')+'.'; })();
 
-var h=(location.hash||'').replace('#',''); showTab(['map','docs','files','catalog','about'].indexOf(h)>=0?h:'map');
+var h=(location.hash||'').replace('#',''); if(/^alt/.test(h)) h='map'; showTab(['map','docs','files','catalog','about'].indexOf(h)>=0?h:'map');
 })();

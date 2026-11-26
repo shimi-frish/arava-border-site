@@ -178,3 +178,24 @@ mark{background:#ffe58f;padding:0}
   .page{height:auto;overflow:visible;max-width:none;padding:0}
   .ccard{border-color:#bbb}
 }
+
+/* ready-made views per border alternative */
+.altbar{position:absolute;top:10px;left:60px;z-index:950;display:flex;flex-wrap:wrap;align-items:center;gap:4px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:6px 8px;box-shadow:0 1px 6px rgba(0,0,0,.18);max-width:calc(100% - 440px)}
+.altbar .al{font-weight:700;margin-left:4px}
+.altbar button{min-width:34px;padding:6px 10px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer;font-size:15px;font-weight:600;font-family:inherit}
+.altbar button:hover{background:var(--hover)}
+.altbar button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.altcard{position:absolute;bottom:26px;left:10px;z-index:950;width:340px;max-width:calc(100% - 20px);max-height:55%;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;box-shadow:0 1px 8px rgba(0,0,0,.2);line-height:1.45}
+.altcard[hidden]{display:none}
+.altcard .ct{font-weight:700;font-size:16px;margin-left:20px}
+.altcard .cd{margin:4px 0 8px;color:#333;font-size:13.5px}
+.altcard .ci{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:2px 0}
+.altcard .cn{flex:1;cursor:pointer}
+.altcard .ch{font-size:11.5px;margin-top:6px}
+.altcard .close{position:absolute;top:6px;left:8px;border:0;background:none;cursor:pointer;font-size:15px;color:var(--muted)}
+.altcard .info-b{border:0;background:none;cursor:pointer;color:var(--accent2)}
+@media (max-width:800px){
+  .altbar{top:56px;left:8px;right:8px;max-width:none;padding:4px 6px}
+  .altbar button{padding:5px 8px;font-size:14px}
+  .altcard{bottom:8px;left:8px;right:8px;width:auto;max-height:40%}
+}
