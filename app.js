@@ -253,6 +253,7 @@ function applyPreset(p){
   ORDER.forEach(function(l){ if(l.isBase) return; l.on=!!want[l.id]; l.cb.checked=l.on; });
   GROUPS.forEach(function(g){ g.on=true; g.cb.checked=true; g.el.classList.add('closed'); });
   all.forEach(function(l){ var q=l.parent; while(q){ q.el.classList.remove('closed'); q=q.parent; } });
+  var bk=p.base||'osm'; if($('#basemap').value!==bk){ $('#basemap').value=bk; setBase(bk); }
   refresh(); map.fitBounds(ARAVA);
   $$('#altbar button').forEach(function(b){ b.classList.toggle('on',b.dataset.k===p.k); });
   var card=$('#altcard');
