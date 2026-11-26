@@ -1,1 +1,0 @@
-__V("L86",{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[35.545701,31.837265]},"properties":{"id":1,"Name_HEB":"אתר טבילה","Name_ENG":"Baptisem site","Country":null}}]});
