@@ -3,6 +3,10 @@
 'use strict';
 var CFG = window.__CFG || {tree:[],raster:{},vector:{}};
 var FILES = window.__FILES || {name:'root',dirs:[],files:[]};
+/* PDF/Word files are kept out of the public repository (.gitignore): on the public site hide their links so they are not broken.
+   On the local copy (file:// or localhost) they stay viewable. */
+var IS_PUBLIC = /^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+(function strip(n){ (n.files||[]).forEach(function(f){ if(IS_PUBLIC && f.url && /\.(pdf|docx)$/i.test(f.url)){ delete f.url; delete f.view; f.nopub=1; } }); (n.dirs||[]).forEach(strip); })(FILES);
 var META = window.__META || {layers:{},folders:{},images:{}};
 function nk(s){return String(s==null?'':s).replace(/'/g,'\u05F3').replace(/"/g,'\u05F4').trim();}
 var MF=[['what','מה זה'],['shows','מה רואים ואיך לקרוא'],['source','מקור'],['method','איך הוכן'],['notes','דיוק והערות'],['date','תאריך']];
@@ -297,6 +301,7 @@ function fileActions(f){
   var a='';
   if(f.view && f.view!=='download') a+='<button class="btn v">צפייה</button>';
   if(f.url) a+='<a class="btn" href="'+enc(f.url)+'" download>הורדה</a>';
+  if(f.nopub) a+='<span class="muted" title="קובץ זה נמצא בעותק המקומי של הפרויקט בלבד">לא מפורסם באתר</span>';
   if(f.layers){
     a+='<button class="btn m">הצגה במפה</button><button class="btn i" title="מידע על השכבה">ⓘ מידע</button>';
     f.layers.forEach(function(id){ var l=LAYERS[id]; if(l&&l.type==='raster'&&CFG.raster[id]&&CFG.raster[id].file&&!f._pv){ f._pv=id; a+='<button class="btn p">תצוגה מקדימה</button>'; } });
