@@ -1,31 +1,41 @@
 {
- "length_km": 175.0,
- "share_from_period_sources_pct": 62.8,
+ "length_km": 181.0,
+ "share_pre_treaty_sources_pct": 60.7,
+ "share_post_treaty_sheets_19_20_pct": 33.7,
+ "share_armistice_fill_pct": 1.7,
  "by_source_km": {
-  "armistice_line_gap": 64.1,
+  "armistice_line_gap": 3.0,
   "trail_sheet14_1993": 34.0,
   "trail_sheet17_1991": 50.0,
+  "trail_sheet19_1998": 19.4,
+  "trail_sheet20_1996": 41.6,
   "yahel_before_treaty": 13.6,
   "yotvata_before_treaty": 12.3
  },
  "dx_vs_armistice_all": {
-  "median_abs_m": 38,
-  "p90_abs_m": 277,
-  "max_abs_m": 405
+  "median_abs_m": 155,
+  "p90_abs_m": 630,
+  "max_abs_m": 1749
  },
- "dx_vs_armistice_period_sources": {
+ "dx_vs_armistice_pre_treaty": {
   "median_abs_m": 89,
-  "share_over_300m_pct": 12.3,
-  "max_east_m": 405,
+  "max_east_m": 486,
   "max_west_m": -138
  },
- "dx_vs_1994_period_sources": {
-  "median_abs_m": 291
+ "dx_vs_armistice_sheets_19_20": {
+  "median_abs_m": 357,
+  "p90_abs_m": 992,
+  "max_east_m": 1749,
+  "max_west_m": -1129,
+  "share_east_pct": 45.9
  },
- "areas_east_of_armistice_km2": 12.83,
- "areas_west_of_armistice_km2": 0.25,
- "yahel_map_shift_applied_m": [
-  -350,
-  50
- ]
+ "dx_vs_1994_all": {
+  "median_abs_m": 131
+ },
+ "dx_vs_1994_sheets_19_20": {
+  "median_abs_m": 43
+ },
+ "areas_east_of_armistice_km2": 21.57,
+ "areas_west_of_armistice_km2": 16.59,
+ "note": "sheets 19 (1998) and 20 (Aug 1996) post-date the 1994 treaty; used at the researcher request instead of the armistice-line fill"
 }
